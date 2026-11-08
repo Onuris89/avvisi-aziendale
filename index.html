@@ -12,11 +12,13 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
 
 .notes-link-preview{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid #b9d9cf;border-radius:7px;padding:10px 12px;margin-top:9px;background:#edf7f3;font-size:11px}.notes-link-preview a{display:inline-block;color:#fff;background:var(--teal);font-weight:600;padding:8px 12px;border-radius:5px;text-decoration:none;white-space:nowrap}.notes-link-preview a:hover{background:#0b554f;text-decoration:underline}.notes-link-preview span{min-width:0;overflow-wrap:anywhere;color:#526b62}
 
+.rich-notes ul,.rich-notes ol{margin:5px 0;padding-inline-start:26px}.rich-notes ul{list-style-type:disc}.rich-notes ol{list-style-type:decimal}.rich-notes li{padding-inline-start:2px;margin:2px 0;white-space:pre-wrap}.rich-notes .notes-paragraph{min-height:1.5em}.rich-notes .notes-list+.notes-paragraph{margin-top:5px}.note-preview.rich-notes ul,.note-preview.rich-notes ol{margin:0;padding-inline-start:18px}
+
 /* Rich notes: formatting is scoped to note content, including its preview. */
 #editor{max-width:700px}.notes-field{margin:20px 0}.notes-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;font-weight:600;margin-bottom:8px}#notes-count{font-size:10px;color:var(--muted);font-weight:400}.notes-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:9px;background:#f2f6f5;border:1px solid #d7e0e2;border-radius:7px 7px 0 0}.notes-toolbar button{background:#fff;border:1px solid #d7e0e2;border-radius:5px;min-width:32px;min-height:32px;padding:6px 9px;font-size:11px;color:var(--ink)}.notes-toolbar button:hover,.notes-toolbar button[aria-pressed=true]{background:#d8eee7;border-color:#7eb3a4}.notes-toolbar .notes-palette{font-size:9px;margin:0 3px;font-weight:500;color:#657d76}.notes-toolbar .notes-palette select{display:inline-block;width:auto;padding:6px;margin:0 0 0 4px;font-size:11px;background:#fff}.notes-input{border:1px solid #d7e0e2;border-top:0;border-radius:0 0 7px 7px;background:#fff;min-height:145px;max-height:320px;overflow:auto;padding:13px;font-size:13px;line-height:1.65;font-weight:400}.notes-input:focus{outline:2px solid #8bc0b5;outline-offset:1px}.notes-input:empty::before{content:attr(data-placeholder);color:#95a2a7;pointer-events:none}.rich-notes{white-space:pre-wrap;overflow-wrap:anywhere}.rich-notes a{color:#175cd3;text-decoration:underline;cursor:pointer}.note-preview.rich-notes{max-height:3.3em;white-space:pre-wrap;line-height:1.6;text-overflow:clip}.reminder-notes{font-size:12px;margin-top:8px}.notes-help{font-size:10px;color:#778b84;line-height:1.6;margin:8px 0}.notes-link-panel{background:#f2f6f5;border:1px solid #d7e0e2;border-radius:7px;padding:0 12px 12px;margin-top:10px}.notes-link-panel label{margin:12px 0}.notes-link-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}@media(max-width:760px){.notes-toolbar{gap:5px}.notes-toolbar .notes-palette{width:100%;display:flex;align-items:center;justify-content:space-between}.notes-toolbar .notes-palette select{width:70%}.notes-input{min-height:130px}}
 </style></head>
 <body><div class="shell">
-<aside class="sidebar"><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">a</span>avvisi<span class="brand-dot">.</span></a><div class="workspace">PC AZIENDALE · SENZA INSTALLAZIONE</div><nav aria-label="Filtra avvisi"><button class="nav active" data-filter="active"><span>◷ &nbsp; Da completare</span><span id="nav-active">0</span></button><button class="nav" data-filter="overdue"><span>◴ &nbsp; Scaduti</span><span id="nav-overdue">0</span></button><button class="nav" data-filter="soon"><span>◷ &nbsp; In scadenza</span><span id="nav-soon">0</span></button><button class="nav" data-filter="completed"><span>✓ &nbsp; Completati</span><span id="nav-completed">0</span></button><button class="nav" data-filter="all"><span>☷ &nbsp; Tutti gli avvisi</span><span id="nav-all">0</span></button></nav><div class="sidebar-bottom"><button class="nav" id="settings-button">⚙ &nbsp; Impostazioni avvisi</button><div class="local-note"><span class="green-dot"></span> Archivio su questo browser<p>Nessun dato inviato online.<br>Esporta un backup per conservarlo.</p></div><span class="version">AVVISI / PC AZIENDALE / VERSIONE 1.4</span></div></aside>
+<aside class="sidebar"><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">a</span>avvisi<span class="brand-dot">.</span></a><div class="workspace">PC AZIENDALE · SENZA INSTALLAZIONE</div><nav aria-label="Filtra avvisi"><button class="nav active" data-filter="active"><span>◷ &nbsp; Da completare</span><span id="nav-active">0</span></button><button class="nav" data-filter="overdue"><span>◴ &nbsp; Scaduti</span><span id="nav-overdue">0</span></button><button class="nav" data-filter="soon"><span>◷ &nbsp; In scadenza</span><span id="nav-soon">0</span></button><button class="nav" data-filter="completed"><span>✓ &nbsp; Completati</span><span id="nav-completed">0</span></button><button class="nav" data-filter="all"><span>☷ &nbsp; Tutti gli avvisi</span><span id="nav-all">0</span></button></nav><div class="sidebar-bottom"><button class="nav" id="settings-button">⚙ &nbsp; Impostazioni avvisi</button><div class="local-note"><span class="green-dot"></span> Archivio su questo browser<p>Nessun dato inviato online.<br>Esporta un backup per conservarlo.</p></div><span class="version">AVVISI / PC AZIENDALE / VERSIONE 1.5</span></div></aside>
 <main><header class="topbar"><span>Organizza il lavoro. Libera la mente.</span><time id="today"></time></header><div class="content"><div class="heading"><div><div class="eyebrow">SCADENZE DI LAVORO</div><h1>Un pensiero in meno.</h1><p>Tutti i tuoi impegni, al momento giusto.</p></div><button class="primary" id="new-button"><span aria-hidden="true">＋</span> Nuovo avviso</button></div>
 <div id="storage-warning" class="banner warning" role="alert" hidden></div><div id="conflict-warning" class="banner warning" role="alert" hidden></div>
 <section class="desktop-banner" aria-label="Notifiche desktop"><p id="desktop-status-text" role="status"></p><div><button class="secondary" id="enable-desktop-top">Abilita notifiche desktop</button><button class="secondary" id="test-desktop">Prova avviso desktop</button><button class="secondary" id="open-reminder-summary">Apri elenco scadenze</button></div></section>
@@ -31,13 +33,14 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
 <button type="button" data-note-command="bold" aria-label="Grassetto" aria-pressed="false" title="Grassetto (Ctrl+B)"><strong>B</strong></button>
 <button type="button" data-note-command="italic" aria-label="Corsivo" aria-pressed="false" title="Corsivo (Ctrl+I)"><em>I</em></button>
 <button type="button" data-note-command="underline" aria-label="Sottolineato" aria-pressed="false" title="Sottolineato (Ctrl+U)"><u>U</u></button>
+<button type="button" data-note-command="insertUnorderedList" aria-label="Elenco puntato" aria-pressed="false" title="Crea o rimuovi elenco puntato">• Elenco puntato</button><button type="button" data-note-command="insertOrderedList" aria-label="Elenco numerato" aria-pressed="false" title="Crea o rimuovi elenco numerato">1. Elenco numerato</button>
 <label class="notes-palette">Colore testo<select id="notes-color" aria-label="Colore testo"><option value="#20353d">Scuro</option><option value="#b42318">Rosso</option><option value="#175cd3">Blu</option><option value="#067647">Verde</option><option value="#6938b4">Viola</option><option value="#b54708">Arancione</option><option value="#475467">Grigio</option></select></label>
 <label class="notes-palette">Evidenziatore<select id="notes-highlight" aria-label="Evidenziatore"><option value="transparent">Nessuno</option><option value="#fef08a">Giallo</option><option value="#bbf7d0">Verde</option><option value="#fecdd3">Rosa</option><option value="#bfdbfe">Azzurro</option><option value="#fed7aa">Arancione</option><option value="#e9d5ff">Lilla</option></select></label>
 <button type="button" id="notes-link" title="Inserisci collegamento (Ctrl+K)">Collegamento</button><button type="button" data-note-command="unlink" title="Rimuovi il collegamento selezionato">Rimuovi link</button><button type="button" data-note-command="removeFormat" title="Rimuovi la formattazione dal testo selezionato">Pulisci formato</button></div>
 <div id="notice-notes" class="notes-input rich-notes" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="notes-label" aria-describedby="notes-help notes-error" spellcheck="true" data-placeholder="Tutto quello che ti servirà ricordare…"></div>
 <div id="notes-link-preview" class="notes-link-preview" role="group" aria-label="Collegamento selezionato" hidden><a id="notes-link-open" target="_blank" rel="noopener noreferrer">Apri collegamento ↗</a><span id="notes-link-address"></span></div>
 <div id="notes-link-panel" class="notes-link-panel" role="group" aria-label="Inserisci collegamento" hidden><label>Indirizzo del collegamento<input id="notes-link-url" type="text" inputmode="url" placeholder="https://esempio.it" aria-describedby="notes-link-url-help"><small id="notes-link-url-help">Incolla il collegamento completo, anche SharePoint o OneDrive. Gli spazi nel percorso vengono codificati automaticamente.</small></label><label>Testo da mostrare<input id="notes-link-text" type="text" maxlength="10000" placeholder="Facoltativo: usa l’indirizzo"></label><p id="notes-link-error" class="form-error" role="alert"></p><div class="notes-link-actions"><button type="button" class="secondary" id="notes-link-cancel">Annulla link</button><button type="button" class="primary" id="notes-link-apply">Inserisci link</button></div></div>
-<p id="notes-help" class="notes-help">Seleziona il testo e scegli il formato o il colore. Durante la modifica, clicca sul link e poi su Apri collegamento per aprirlo in una nuova scheda. Quando incolli viene mantenuto solo il testo.</p><p id="notes-error" class="form-error" role="alert"></p></section><label class="check"><input type="checkbox" id="notice-completed"> Avviso completato</label><p class="form-error" id="editor-error" role="alert"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="editor">Annulla</button><button class="primary" type="submit">Salva avviso</button></div></form></dialog>
+<p id="notes-help" class="notes-help">Seleziona il testo e scegli il formato, il colore o un elenco. Invio aggiunge una voce; premi di nuovo Invio sulla voce vuota per terminare l’elenco. Durante la modifica, clicca sul link e poi su Apri collegamento per aprirlo in una nuova scheda. Quando incolli viene mantenuto solo il testo.</p><p id="notes-error" class="form-error" role="alert"></p></section><label class="check"><input type="checkbox" id="notice-completed"> Avviso completato</label><p class="form-error" id="editor-error" role="alert"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="editor">Annulla</button><button class="primary" type="submit">Salva avviso</button></div></form></dialog>
 <dialog id="settings"><form id="settings-form"><div class="dialog-header"><div><div class="eyebrow">IL TUO RITMO</div><h2>Impostazioni avvisi</h2></div><button type="button" class="icon-button" data-close="settings" aria-label="Chiudi">×</button></div><label>Quando mostrare gli avvisi<select id="schedule-mode"><option value="daily">Ogni giorno agli orari indicati</option><option value="repeat">Ripeti dopo aver nascosto l’avviso</option></select></label><label id="times-label">Orari giornalieri<input id="daily-times" placeholder="08:00; 15:00"><small>Da 1 a 24 orari diversi, separati da punto e virgola.</small></label><label id="repeat-label" hidden>Ripeti gli scaduti dopo (minuti)<input id="repeat-minutes" type="number" min="1" max="43200" step="1"><small>Da 1 minuto a 30 giorni. I preavvisi si ripetono dopo 24 ore.</small></label><label class="check"><input type="checkbox" id="deadline-notification"> Avvisa anche al raggiungimento di ogni scadenza</label><p class="settings-note">Questa opzione aggiunge un avviso alla scadenza, anche fuori dagli orari giornalieri. Il controllo funziona mentre questa pagina rimane aperta.</p><div class="settings-note"><strong>Notifiche desktop</strong><p id="notification-status"></p><button type="button" class="secondary" id="enable-notifications">Abilita notifiche desktop</button></div><p class="settings-note">Gli avvisi compaiono nella pagina e, se autorizzate, nelle notifiche di Windows. I dati restano nel profilo Edge di questo PC: usa Backup JSON per conservarne una copia. Nessuna sincronizzazione con il PC personale.</p><p class="form-error" id="settings-error" role="alert"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="settings">Annulla</button><button class="primary" type="submit">Salva impostazioni</button></div></form></dialog>
 <dialog id="import-dialog"><form id="import-form"><div class="dialog-header"><h2>Importa i tuoi avvisi</h2><button type="button" class="icon-button" data-close="import-dialog" aria-label="Chiudi">×</button></div><p>Scegli un backup di questa versione oppure il file <strong>avvisi.json</strong> dell’app Windows.</p><label>File JSON<input id="import-file" type="file" accept=".json,application/json" required></label><label>Come importare<select id="import-mode"><option value="merge">Aggiungi i nuovi avvisi (conserva quelli esistenti)</option><option value="replace">Sostituisci tutto l’archivio e le impostazioni</option></select></label><p class="settings-note">Gli avvisi con lo stesso identificativo vengono ignorati quando aggiungi. Prima di una sostituzione, scarica un backup dell’archivio corrente.</p><p class="form-error" id="import-error" role="alert"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="import-dialog">Annulla</button><button class="primary" type="submit">Importa avvisi</button></div></form></dialog>
 <dialog id="confirm-dialog"><form method="dialog"><div class="dialog-header"><h2 id="confirm-title">Conferma</h2></div><p id="confirm-message"></p><div class="dialog-actions"><button class="secondary" value="cancel">Annulla</button><button class="primary danger" value="confirm">Conferma</button></div></form></dialog><div class="toast" id="toast" role="status" hidden></div>
@@ -82,22 +85,76 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
     return result;
   }
   const text=runs=>runs.map(r=>r.text).join('');
+  function flattenBlocksUnchecked(blocks){
+    const runs=[];
+    blocks.forEach((block,index)=>{
+      if(index)runs.push({text:'\n'});
+      if(block.type==='bullet')runs.push({text:'• '});
+      if(block.type==='number')runs.push({text:block.number+'. '});
+      runs.push(...block.runs);
+    });
+    return normalize(runs);
+  }
+  function normalizeBlocks(value){
+    if(!Array.isArray(value)||value.length>1000)throw Error('La struttura delle note è troppo complessa o non valida.');
+    const blocks=value.map(block=>{
+      if(!block||!['paragraph','bullet','number'].includes(block.type))throw Error('Tipo di elenco nelle note non valido.');
+      const result={type:block.type,runs:normalize(block.runs)};
+      if(block.type==='number'){
+        if(!Number.isInteger(block.number)||block.number<1||block.number>1000000)throw Error('Numerazione dell’elenco non valida.');
+        result.number=block.number;
+      }
+      return result;
+    });
+    flattenBlocksUnchecked(blocks);return blocks;
+  }
+  function flattenBlocks(value){return flattenBlocksUnchecked(normalizeBlocks(value));}
+  function blocksForNotice(notice){
+    if(notice.NotesBlocks==null)return null;
+    const blocks=normalizeBlocks(notice.NotesBlocks),flat=flattenBlocksUnchecked(blocks);
+    if(text(flat)!==(notice.Notes||''))return null;
+    if(notice.NotesRich!=null&&JSON.stringify(normalize(notice.NotesRich))!==JSON.stringify(flat))return null;
+    return blocks;
+  }
   function forNotice(notice){
     if(notice.NotesRich!=null){const runs=normalize(notice.NotesRich);if(text(runs)===(notice.Notes||''))return runs;}
     return notice.Notes?[{text:notice.Notes}]:[];
   }
-  function render(document,container,notice){
-    const fragment=document.createDocumentFragment();
-    for(const run of forNotice(notice)){
+  function inline(document,container,runs){
+    for(const run of runs){
       const span=document.createElement(run.href?'a':'span');span.textContent=run.text;
       if(run.bold)span.style.fontWeight='700';if(run.italic)span.style.fontStyle='italic';if(run.underline)span.style.textDecoration='underline';
       if(run.color)span.style.color=run.color;if(run.highlight)span.style.backgroundColor=run.highlight;
       if(run.href){span.href=run.href;span.target='_blank';span.rel='noopener noreferrer';}
-      fragment.append(span);
+      container.append(span);
+    }
+  }
+  function render(document,container,notice){
+    const fragment=document.createDocumentFragment(),blocks=blocksForNotice(notice);
+    if(blocks===null)inline(document,fragment,forNotice(notice));
+    else{
+      let list=null,kind=null,lastNumber=null;
+      for(const block of blocks){
+        if(block.type==='paragraph'){
+          list=null;kind=null;lastNumber=null;
+          const paragraph=document.createElement('div');paragraph.className='notes-paragraph';
+          if(block.runs.length)inline(document,paragraph,block.runs);else paragraph.append(document.createElement('br'));
+          fragment.append(paragraph);
+        }else{
+          if(!list||kind!==block.type||(block.type==='number'&&block.number!==lastNumber+1)){
+            list=document.createElement(block.type==='number'?'ol':'ul');list.className='notes-list';
+            if(block.type==='number'&&block.number!==1)list.start=block.number;
+            fragment.append(list);kind=block.type;
+          }
+          const item=document.createElement('li');
+          if(block.runs.length)inline(document,item,block.runs);else item.append(document.createElement('br'));
+          list.append(item);lastNumber=block.number??null;
+        }
+      }
     }
     container.replaceChildren(fragment);
   }
-  const api={LIMIT,MAX_URL_LENGTH,normalize,text,url,forNotice,render};
+  const api={LIMIT,MAX_URL_LENGTH,normalize,normalizeBlocks,flattenBlocks,blocksForNotice,text,url,forNotice,render};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.AvvisiRichNotes=api;
 })(globalThis);
 </script><script>(function (root) {
@@ -145,7 +202,8 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
       // Plain notes remain the fallback for older versions and CSV exports.
       // If an older app edited Notes, its text takes precedence over stale formatting.
       const formatted=runs&&Rich.text(runs)===(n.Notes||'')?runs:null;
-      return { ...n, Priority:priority, Notes:n.Notes||'', NotesRich:formatted, LastNotifiedAt:n.LastNotifiedAt??null, SnoozedUntil:n.SnoozedUntil??null, LastNotificationWasOverdue:n.LastNotificationWasOverdue??false, NotificationPending:n.NotificationPending??false };
+      const blocks=Rich.blocksForNotice({...n,NotesRich:formatted});
+      return { ...n, Priority:priority, Notes:n.Notes||'', NotesRich:formatted, NotesBlocks:blocks, LastNotifiedAt:n.LastNotifiedAt??null, SnoozedUntil:n.SnoozedUntil??null, LastNotificationWasOverdue:n.LastNotificationWasOverdue??false, NotificationPending:n.NotificationPending??false };
     });
     return data;
   }
@@ -317,7 +375,7 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
       const range=selection.getRangeAt(0);if(!inside(range))return;saved=range.cloneRange();
       for(const button of toolbar.querySelectorAll('[data-note-command]')){
         const cmd=button.dataset.noteCommand;
-        if(['bold','italic','underline'].includes(cmd))button.setAttribute('aria-pressed',String(document.queryCommandState(cmd)));
+        if(['bold','italic','underline','insertOrderedList','insertUnorderedList'].includes(cmd))button.setAttribute('aria-pressed',String(document.queryCommandState(cmd)));
       }
       for(const [id,cmd,fallback] of [['notes-color','foreColor','#20353d'],['notes-highlight','hiliteColor','transparent']]){
         const value=cssColor(document.queryCommandValue(cmd))||fallback;
@@ -334,14 +392,14 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
       const match=value.match(/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/);
       return match?'#'+match.slice(1).map(n=>Number(n).toString(16).padStart(2,'0')).join(''):undefined;
     }
-    function read(){
+    function readInline(nodes){
       const runs=[];let plain='';
       const push=(text,style)=>{if(text){runs.push({text,...style});plain+=text;}};
       function walk(node,inherited){
         if(node.nodeType===3){push(node.nodeValue.replace(/\u00a0/g,' '),inherited);return;}
         if(node.nodeType!==1)return;
         const tag=node.tagName;
-        if(['SCRIPT','STYLE','IFRAME','OBJECT','IMG','SVG','MATH','TEMPLATE'].includes(tag))return;
+        if(['SCRIPT','STYLE','IFRAME','OBJECT','IMG','SVG','MATH','TEMPLATE','UL','OL'].includes(tag))return;
         if(tag==='BR'){push('\n',inherited);return;}
         const block=['DIV','P','LI','UL','OL','BLOCKQUOTE','PRE','H1','H2','H3'].includes(tag);
         if(block&&plain&&!plain.endsWith('\n'))push('\n',{});
@@ -360,11 +418,41 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
         for(const child of node.childNodes)walk(child,style);
         if(block&&node.nextSibling&&node.nextSibling.nodeType===3&&!plain.endsWith('\n'))push('\n',{});
       }
-      for(const child of editor.childNodes)walk(child,{});
-      // A contenteditable with only its empty-line placeholder is empty.
-      if(!plain.trim()&&editor.textContent==='')return [];
+      for(const child of nodes)walk(child,{});
       return model.normalize(runs);
     }
+    function readBlocks(){
+      const blocks=[];
+      function list(node){
+        let number=Number(node.getAttribute('start'))||1;
+        for(const item of node.children){
+          if(item.tagName!=='LI')continue;
+          if(item.hasAttribute('value'))number=Number(item.getAttribute('value'));
+          blocks.push({type:node.tagName==='OL'?'number':'bullet',...(node.tagName==='OL'?{number}:{}),runs:readInline([item])});
+          number++;
+          for(const child of item.children)if(['UL','OL'].includes(child.tagName))list(child);
+        }
+      }
+      function flow(nodes){
+        let pending=[];
+        function flush(force=false){if(pending.length||force)blocks.push({type:'paragraph',runs:readInline(pending)});pending=[];}
+        for(const node of nodes){
+          if(node.nodeType===1&&['UL','OL'].includes(node.tagName)){flush();list(node);}
+          else if(node.nodeType===1&&['DIV','P','BLOCKQUOTE','PRE','H1','H2','H3'].includes(node.tagName)){
+            flush();const before=blocks.length;flow(node.childNodes);if(blocks.length===before)flush(true);
+          }else if(node.nodeType===1&&node.tagName==='BR')flush(true);
+          else pending.push(node);
+        }
+        flush();
+      }
+      const children=[...editor.childNodes];
+      // Do not store the browser's single empty paragraph placeholder.
+      if(!children.length||(children.length===1&&editor.textContent===''&&
+        (children[0].tagName==='BR'||(['DIV','P'].includes(children[0].tagName)&&children[0].childNodes.length===1&&children[0].firstChild.tagName==='BR'))))return [];
+      flow(children);return model.normalizeBlocks(blocks);
+    }
+    function read(){return model.flattenBlocks(readBlocks());}
+    function readNote(){const blocks=readBlocks(),runs=model.flattenBlocks(blocks);return {Notes:model.text(runs),NotesRich:runs,NotesBlocks:blocks};}
     function feedback(){
       try{const count=model.text(read()).length;$('notes-count').textContent=count.toLocaleString('it-IT')+' / 10.000';$('notes-error').textContent='';}
       catch(error){$('notes-error').textContent=error.message;}
@@ -436,7 +524,7 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
       for(const b of toolbar.querySelectorAll('[aria-pressed]'))b.setAttribute('aria-pressed','false');
       feedback();
     }
-    return {load,read};
+    return {load,read,readNote};
   }
   root.AvvisiNotesEditor={create};
 })(globalThis);
@@ -447,7 +535,7 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
   let data=C.defaults(), observed=null, filter='active', editingId=null, editingSnapshot=null, settingsSnapshot=null, volatile=false, damaged=false, preview=false, summaryOpen=false, tickerBusy=false;
   let desktopFeedback='', desktopCode='', popupSignature='';
   const labels={active:'Da completare',overdue:'Scaduti',soon:'In scadenza',completed:'Completati',all:'Tutti gli avvisi'};
-  const editable=n=>JSON.stringify([n.Title,n.Priority,n.Notes,n.NotesRich,n.StartDate,n.DueAt,n.LeadMinutes,n.Completed]);
+  const editable=n=>JSON.stringify([n.Title,n.Priority,n.Notes,n.NotesRich,n.NotesBlocks,n.StartDate,n.DueAt,n.LeadMinutes,n.Completed]);
   const decode=text=>{const raw=JSON.parse(text);return C.validate(raw.data??raw);};
   const warn=message=>{$('storage-warning').textContent=message;$('storage-warning').hidden=false;};
   let startupMessage='';
@@ -583,11 +671,11 @@ dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;marg
   }
   $('editor-form').onsubmit=async e=>{
     e.preventDefault();try{
-      const notes=NotesEditor.read();
+      const notes=NotesEditor.readNote();
       await commit(d=>{
         const existing=d.Notices.find(n=>n.Id===editingId);
         if(editingId&&(!existing||editable(existing)!==editingSnapshot))throw Error('L’avviso è cambiato mentre lo modificavi. Chiudi e riapri il modulo per vedere i dati aggiornati.');
-        const n={...(existing||{}),Id:editingId||(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2)),Title:$('notice-title').value.trim(),Priority:document.querySelector('input[name="notice-priority"]:checked').value,Notes:Rich.text(notes),NotesRich:notes,StartDate:C.stamp(C.date($('notice-start').value)),DueAt:C.stamp(C.date($('notice-due').value)),LeadMinutes:+$('notice-lead').value,Completed:$('notice-completed').checked};
+        const n={...(existing||{}),Id:editingId||(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2)),Title:$('notice-title').value.trim(),Priority:document.querySelector('input[name="notice-priority"]:checked').value,...notes,StartDate:C.stamp(C.date($('notice-start').value)),DueAt:C.stamp(C.date($('notice-due').value)),LeadMinutes:+$('notice-lead').value,Completed:$('notice-completed').checked};
         const timingChanged=!existing||existing.DueAt!==n.DueAt||existing.LeadMinutes!==n.LeadMinutes||existing.Completed!==n.Completed;
         if(timingChanged){n.LastNotifiedAt=null;n.LastNotificationWasOverdue=false;n.NotificationPending=false;n.SnoozedUntil=null;n.BrowserDeadlineNotifiedAt=null;}
         if(existing)d.Notices[d.Notices.indexOf(existing)]=n;else d.Notices.push(n);
