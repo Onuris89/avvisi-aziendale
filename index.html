@@ -4,26 +4,103 @@
 /* Desktop status is visible before the first reminder, including local-file limits. */
 .desktop-banner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 19px;background:#edf4f3;border:1px solid #d6e5e1;border-radius:9px;margin-bottom:24px}.desktop-banner p{font-size:11px;line-height:1.6;margin:0;max-width:760px;color:#4e7069}.desktop-banner>div{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0}.desktop-banner .secondary{font-size:10px;padding:9px 12px}#reminder-popup{width:min(740px,calc(100% - 30px));border:2px solid #d7bd7d;max-height:86vh;background:#fffcf5}#reminder-popup .dialog-header{margin-bottom:14px}#popup-description{font-size:12px;color:#806e4b}#popup-items{max-height:48vh;overflow:auto}#popup-items .reminder-item{margin:8px 0}#reminder-popup::backdrop{background:#283b4b70}@media(max-width:1100px){.desktop-banner{align-items:flex-start;flex-direction:column}.desktop-banner>div{flex-shrink:1}}
 .setup-steps{padding-left:22px;font-size:12px;line-height:1.7}.setup-steps li{margin:12px 0}
+
+/* Rectangular priorities include labels so the meaning does not depend on color. */
+.priority-badge{display:inline-flex;align-items:center;justify-content:center;min-width:70px;min-height:23px;padding:4px 10px;border-radius:3px;font-size:11px;font-weight:650;line-height:1.3;white-space:nowrap}.priority-low{color:#fff;background:#15803d}.priority-medium{color:#422006;background:#facc15}.priority-high{color:#fff;background:#b91c1c}.priority-field{border:0;margin:18px 0;padding:0;min-width:0}.priority-field legend{font-size:12px;font-weight:600;margin-bottom:12px}.priority-choices{display:flex;gap:12px;flex-wrap:wrap}.priority-choices label{display:flex;align-items:center;gap:6px;margin:0;cursor:pointer}.priority-choices input{accent-color:var(--teal);width:16px;height:16px;margin:0}.priority-choices .priority-badge{min-width:88px;min-height:31px}.priority-choices input:checked+.priority-badge{outline:2px solid #20353d;outline-offset:2px}.priority-choices input:focus-visible+.priority-badge{outline:3px solid #57b3ad;outline-offset:3px}.reminder-item .priority-badge{margin-top:8px}td:first-child{width:40%}
+
+dialog .priority-choices input[type=radio]{width:16px;height:16px;padding:0;margin:0;display:inline-block;background:transparent;border:0}
+
+/* Rich notes: formatting is scoped to note content, including its preview. */
+#editor{max-width:700px}.notes-field{margin:20px 0}.notes-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;font-weight:600;margin-bottom:8px}#notes-count{font-size:10px;color:var(--muted);font-weight:400}.notes-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:9px;background:#f2f6f5;border:1px solid #d7e0e2;border-radius:7px 7px 0 0}.notes-toolbar button{background:#fff;border:1px solid #d7e0e2;border-radius:5px;min-width:32px;min-height:32px;padding:6px 9px;font-size:11px;color:var(--ink)}.notes-toolbar button:hover,.notes-toolbar button[aria-pressed=true]{background:#d8eee7;border-color:#7eb3a4}.notes-toolbar .notes-palette{font-size:9px;margin:0 3px;font-weight:500;color:#657d76}.notes-toolbar .notes-palette select{display:inline-block;width:auto;padding:6px;margin:0 0 0 4px;font-size:11px;background:#fff}.notes-input{border:1px solid #d7e0e2;border-top:0;border-radius:0 0 7px 7px;background:#fff;min-height:145px;max-height:320px;overflow:auto;padding:13px;font-size:13px;line-height:1.65;font-weight:400}.notes-input:focus{outline:2px solid #8bc0b5;outline-offset:1px}.notes-input:empty::before{content:attr(data-placeholder);color:#95a2a7;pointer-events:none}.rich-notes{white-space:pre-wrap;overflow-wrap:anywhere}.rich-notes a{color:#175cd3;text-decoration:underline;cursor:pointer}.note-preview.rich-notes{max-height:3.3em;white-space:pre-wrap;line-height:1.6;text-overflow:clip}.reminder-notes{font-size:12px;margin-top:8px}.notes-help{font-size:10px;color:#778b84;line-height:1.6;margin:8px 0}.notes-link-panel{background:#f2f6f5;border:1px solid #d7e0e2;border-radius:7px;padding:0 12px 12px;margin-top:10px}.notes-link-panel label{margin:12px 0}.notes-link-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}@media(max-width:760px){.notes-toolbar{gap:5px}.notes-toolbar .notes-palette{width:100%;display:flex;align-items:center;justify-content:space-between}.notes-toolbar .notes-palette select{width:70%}.notes-input{min-height:130px}}
 </style></head>
 <body><div class="shell">
-<aside class="sidebar"><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">a</span>avvisi<span class="brand-dot">.</span></a><div class="workspace">PC AZIENDALE · SENZA INSTALLAZIONE</div><nav aria-label="Filtra avvisi"><button class="nav active" data-filter="active"><span>◷ &nbsp; Da completare</span><span id="nav-active">0</span></button><button class="nav" data-filter="overdue"><span>◴ &nbsp; Scaduti</span><span id="nav-overdue">0</span></button><button class="nav" data-filter="soon"><span>◷ &nbsp; In scadenza</span><span id="nav-soon">0</span></button><button class="nav" data-filter="completed"><span>✓ &nbsp; Completati</span><span id="nav-completed">0</span></button><button class="nav" data-filter="all"><span>☷ &nbsp; Tutti gli avvisi</span><span id="nav-all">0</span></button></nav><div class="sidebar-bottom"><button class="nav" id="settings-button">⚙ &nbsp; Impostazioni avvisi</button><div class="local-note"><span class="green-dot"></span> Archivio su questo browser<p>Nessun dato inviato online.<br>Esporta un backup per conservarlo.</p></div><span class="version">AVVISI / PC AZIENDALE / VERSIONE 1.0</span></div></aside>
+<aside class="sidebar"><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">a</span>avvisi<span class="brand-dot">.</span></a><div class="workspace">PC AZIENDALE · SENZA INSTALLAZIONE</div><nav aria-label="Filtra avvisi"><button class="nav active" data-filter="active"><span>◷ &nbsp; Da completare</span><span id="nav-active">0</span></button><button class="nav" data-filter="overdue"><span>◴ &nbsp; Scaduti</span><span id="nav-overdue">0</span></button><button class="nav" data-filter="soon"><span>◷ &nbsp; In scadenza</span><span id="nav-soon">0</span></button><button class="nav" data-filter="completed"><span>✓ &nbsp; Completati</span><span id="nav-completed">0</span></button><button class="nav" data-filter="all"><span>☷ &nbsp; Tutti gli avvisi</span><span id="nav-all">0</span></button></nav><div class="sidebar-bottom"><button class="nav" id="settings-button">⚙ &nbsp; Impostazioni avvisi</button><div class="local-note"><span class="green-dot"></span> Archivio su questo browser<p>Nessun dato inviato online.<br>Esporta un backup per conservarlo.</p></div><span class="version">AVVISI / PC AZIENDALE / VERSIONE 1.2</span></div></aside>
 <main><header class="topbar"><span>Organizza il lavoro. Libera la mente.</span><time id="today"></time></header><div class="content"><div class="heading"><div><div class="eyebrow">SCADENZE DI LAVORO</div><h1>Un pensiero in meno.</h1><p>Tutti i tuoi impegni, al momento giusto.</p></div><button class="primary" id="new-button"><span aria-hidden="true">＋</span> Nuovo avviso</button></div>
 <div id="storage-warning" class="banner warning" role="alert" hidden></div><div id="conflict-warning" class="banner warning" role="alert" hidden></div>
 <section class="desktop-banner" aria-label="Notifiche desktop"><p id="desktop-status-text" role="status"></p><div><button class="secondary" id="enable-desktop-top">Abilita notifiche desktop</button><button class="secondary" id="test-desktop">Prova avviso desktop</button><button class="secondary" id="open-reminder-summary">Apri elenco scadenze</button></div></section>
 <section class="desktop-banner" aria-label="Uso senza installazione"><p><strong>Nessuna installazione.</strong> Apri questo sito in Edge, abilita le notifiche desktop e lascia la scheda aperta, anche con Edge ridotto a icona.</p></section>
 <section class="stats" aria-label="Riepilogo"><button class="stat" data-filter="active"><span>Da completare <span class="stat-icon">◷</span></span><strong id="count-active">0</strong><small>Il lavoro ancora da fare</small></button><button class="stat" data-filter="overdue"><span>Scaduti <span class="stat-icon red">◴</span></span><strong id="count-overdue" class="red">0</strong><small>Richiedono la tua attenzione</small></button><button class="stat" data-filter="soon"><span>In scadenza <span class="stat-icon amber">◷</span></span><strong id="count-soon">0</strong><small>Nell’anticipo che hai scelto</small></button><button class="stat" data-filter="completed"><span>Completati <span class="stat-icon green">✓</span></span><strong id="count-completed">0</strong><small>Un passo avanti, ogni giorno</small></button></section>
 <section id="reminder-panel" class="reminder" hidden aria-labelledby="reminder-title"><div class="section-top"><div><span class="eyebrow">È IL MOMENTO DI DARE UN’OCCHIATA</span><h2 id="reminder-title">Avvisi da leggere</h2></div><button id="dismiss-reminders" class="secondary">Nascondi avvisi</button></div><p id="reminder-description"></p><div id="reminder-items"></div></section>
-<section class="list-card" aria-labelledby="list-title"><div class="section-top"><div class="list-heading"><h2 id="list-title">Da completare</h2><span id="result-count" class="count-pill">0</span></div><div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Cerca titolo o note…" aria-label="Cerca titolo o note"></label><select id="sort" aria-label="Ordina avvisi"><option value="due">Scadenza più vicina</option><option value="reverse">Scadenza più lontana</option><option value="title">Titolo A–Z</option></select></div></div><div class="table-wrap"><table><thead><tr><th scope="col">AVVISO</th><th scope="col">SCADENZA</th><th scope="col">STATO</th><th scope="col"><span class="sr-only">Azioni</span></th></tr></thead><tbody id="rows"></tbody></table></div><div id="empty" class="empty"><div class="empty-symbol" aria-hidden="true">✓</div><h3>Fai spazio ai tuoi prossimi impegni.</h3><p>Crea il primo avviso: alla scadenza ci pensiamo insieme.</p><button class="secondary" id="empty-new">＋ Crea un avviso</button></div><div class="list-footer"><span id="save-status" role="status">Archivio pronto</span><div><button class="text-button" id="import-button">Importa JSON</button><button class="text-button" id="backup-button">↓ Backup JSON</button><button class="text-button" id="csv-button">↓ Esporta CSV</button></div></div></section>
+<section class="list-card" aria-labelledby="list-title"><div class="section-top"><div class="list-heading"><h2 id="list-title">Da completare</h2><span id="result-count" class="count-pill">0</span></div><div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Cerca titolo o note…" aria-label="Cerca titolo o note"></label><select id="sort" aria-label="Ordina avvisi"><option value="priority" selected>Priorità: Alta → Bassa</option><option value="due">Scadenza più vicina</option><option value="reverse">Scadenza più lontana</option><option value="title">Titolo A–Z</option></select></div></div><div class="table-wrap"><table><thead><tr><th scope="col">AVVISO</th><th scope="col">PRIORITÀ</th><th scope="col">SCADENZA</th><th scope="col">STATO</th><th scope="col"><span class="sr-only">Azioni</span></th></tr></thead><tbody id="rows"></tbody></table></div><div id="empty" class="empty"><div class="empty-symbol" aria-hidden="true">✓</div><h3>Fai spazio ai tuoi prossimi impegni.</h3><p>Crea il primo avviso: alla scadenza ci pensiamo insieme.</p><button class="secondary" id="empty-new">＋ Crea un avviso</button></div><div class="list-footer"><span id="save-status" role="status">Archivio pronto</span><div><button class="text-button" id="import-button">Importa JSON</button><button class="text-button" id="backup-button">↓ Backup JSON</button><button class="text-button" id="csv-button">↓ Esporta CSV</button></div></div></section>
 <div class="bottom-note"><span aria-hidden="true">ⓘ</span><p><strong>Lascia questa pagina aperta per ricevere gli avvisi sul desktop.</strong> Il controllo avviene ogni 15 secondi mentre il browser esegue la pagina. Se Edge sospende la scheda o il PC va in sospensione, gli avvisi possono arrivare in ritardo: vengono ricontrollati al ritorno nella pagina. Chiudendo la scheda il controllo si interrompe.</p></div><footer><span id="schedule-summary"></span><button class="text-button" id="test-button">Prova avviso nella pagina</button></footer></div></main></div>
 <dialog id="reminder-popup" aria-labelledby="popup-title"><div class="dialog-header"><div><div class="eyebrow">AVVISI DI SCADENZA</div><h2 id="popup-title">Avvisi da leggere</h2></div><button type="button" class="icon-button" id="popup-dismiss" aria-label="Nascondi avvisi">×</button></div><p id="popup-description"></p><div id="popup-items"></div><div class="dialog-actions"><button type="button" class="secondary" id="popup-dismiss-bottom">Ho letto · Nascondi</button></div></dialog>
-<dialog id="editor"><form id="editor-form"><div class="dialog-header"><div><div class="eyebrow">I DETTAGLI FANNO LA DIFFERENZA</div><h2 id="editor-title">Nuovo avviso</h2></div><button type="button" class="icon-button" data-close="editor" aria-label="Chiudi">×</button></div><label>Titolo<input id="notice-title" maxlength="160" required placeholder="Es. Inviare il report mensile"></label><div class="form-grid"><label>Data dell’avviso<input id="notice-start" type="date" min="1900-01-01" max="9999-12-31" required></label><label>Scadenza<input id="notice-due" type="datetime-local" min="1900-01-01T00:00" max="9999-12-31T23:59" required></label></div><label>Avvisami<select id="notice-lead"><option value="0">Alla scadenza</option><option value="15">15 minuti prima</option><option value="60">1 ora prima</option><option value="1440" selected>1 giorno prima</option><option value="4320">3 giorni prima</option><option value="10080">7 giorni prima</option><option value="20160">14 giorni prima</option><option value="43200">30 giorni prima</option></select></label><label>Note <span class="muted">(facoltative)</span><textarea id="notice-notes" maxlength="10000" rows="4" placeholder="Tutto quello che ti servirà ricordare…"></textarea></label><label class="check"><input type="checkbox" id="notice-completed"> Avviso completato</label><p class="form-error" id="editor-error" role="alert"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="editor">Annulla</button><button class="primary" type="submit">Salva avviso</button></div></form></dialog>
+<dialog id="editor"><form id="editor-form"><div class="dialog-header"><div><div class="eyebrow">I DETTAGLI FANNO LA DIFFERENZA</div><h2 id="editor-title">Nuovo avviso</h2></div><button type="button" class="icon-button" data-close="editor" aria-label="Chiudi">×</button></div><label>Titolo<input id="notice-title" maxlength="160" required placeholder="Es. Inviare il report mensile"></label><fieldset class="priority-field"><legend>Priorità</legend><div class="priority-choices"><label><input id="priority-low" type="radio" name="notice-priority" value="low"><span class="priority-badge priority-low">Bassa</span></label><label><input id="priority-medium" type="radio" name="notice-priority" value="medium" checked><span class="priority-badge priority-medium">Media</span></label><label><input id="priority-high" type="radio" name="notice-priority" value="high"><span class="priority-badge priority-high">Alta</span></label></div></fieldset><div class="form-grid"><label>Data dell’avviso<input id="notice-start" type="date" min="1900-01-01" max="9999-12-31" required></label><label>Scadenza<input id="notice-due" type="datetime-local" min="1900-01-01T00:00" max="9999-12-31T23:59" required></label></div><label>Avvisami<select id="notice-lead"><option value="0">Alla scadenza</option><option value="15">15 minuti prima</option><option value="60">1 ora prima</option><option value="1440" selected>1 giorno prima</option><option value="4320">3 giorni prima</option><option value="10080">7 giorni prima</option><option value="20160">14 giorni prima</option><option value="43200">30 giorni prima</option></select></label><section class="notes-field" aria-labelledby="notes-label"><div class="notes-heading"><span id="notes-label">Note <span class="muted">(facoltative)</span></span><span id="notes-count" aria-live="polite">0 / 10.000</span></div>
+<div class="notes-toolbar" id="notes-toolbar" role="group" aria-label="Formattazione note">
+<button type="button" data-note-command="bold" aria-label="Grassetto" aria-pressed="false" title="Grassetto (Ctrl+B)"><strong>B</strong></button>
+<button type="button" data-note-command="italic" aria-label="Corsivo" aria-pressed="false" title="Corsivo (Ctrl+I)"><em>I</em></button>
+<button type="button" data-note-command="underline" aria-label="Sottolineato" aria-pressed="false" title="Sottolineato (Ctrl+U)"><u>U</u></button>
+<label class="notes-palette">Colore testo<select id="notes-color" aria-label="Colore testo"><option value="#20353d">Scuro</option><option value="#b42318">Rosso</option><option value="#175cd3">Blu</option><option value="#067647">Verde</option><option value="#6938b4">Viola</option><option value="#b54708">Arancione</option><option value="#475467">Grigio</option></select></label>
+<label class="notes-palette">Evidenziatore<select id="notes-highlight" aria-label="Evidenziatore"><option value="transparent">Nessuno</option><option value="#fef08a">Giallo</option><option value="#bbf7d0">Verde</option><option value="#fecdd3">Rosa</option><option value="#bfdbfe">Azzurro</option><option value="#fed7aa">Arancione</option><option value="#e9d5ff">Lilla</option></select></label>
+<button type="button" id="notes-link" title="Inserisci collegamento (Ctrl+K)">Collegamento</button><button type="button" data-note-command="unlink" title="Rimuovi il collegamento selezionato">Rimuovi link</button><button type="button" data-note-command="removeFormat" title="Rimuovi la formattazione dal testo selezionato">Pulisci formato</button></div>
+<div id="notice-notes" class="notes-input rich-notes" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="notes-label" aria-describedby="notes-help notes-error" spellcheck="true" data-placeholder="Tutto quello che ti servirà ricordare…"></div>
+<div id="notes-link-panel" class="notes-link-panel" role="group" aria-label="Inserisci collegamento" hidden><label>Indirizzo del collegamento<input id="notes-link-url" type="text" inputmode="url" placeholder="https://esempio.it" maxlength="2048"></label><label>Testo da mostrare<input id="notes-link-text" type="text" maxlength="10000" placeholder="Facoltativo: usa l’indirizzo"></label><p id="notes-link-error" class="form-error" role="alert"></p><div class="notes-link-actions"><button type="button" class="secondary" id="notes-link-cancel">Annulla link</button><button type="button" class="primary" id="notes-link-apply">Inserisci link</button></div></div>
+<p id="notes-help" class="notes-help">Seleziona il testo e scegli il formato o il colore. I link si aprono in una nuova scheda. Quando incolli viene mantenuto solo il testo.</p><p id="notes-error" class="form-error" role="alert"></p></section><label class="check"><input type="checkbox" id="notice-completed"> Avviso completato</label><p class="form-error" id="editor-error" role="alert"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="editor">Annulla</button><button class="primary" type="submit">Salva avviso</button></div></form></dialog>
 <dialog id="settings"><form id="settings-form"><div class="dialog-header"><div><div class="eyebrow">IL TUO RITMO</div><h2>Impostazioni avvisi</h2></div><button type="button" class="icon-button" data-close="settings" aria-label="Chiudi">×</button></div><label>Quando mostrare gli avvisi<select id="schedule-mode"><option value="daily">Ogni giorno agli orari indicati</option><option value="repeat">Ripeti dopo aver nascosto l’avviso</option></select></label><label id="times-label">Orari giornalieri<input id="daily-times" placeholder="08:00; 15:00"><small>Da 1 a 24 orari diversi, separati da punto e virgola.</small></label><label id="repeat-label" hidden>Ripeti gli scaduti dopo (minuti)<input id="repeat-minutes" type="number" min="1" max="43200" step="1"><small>Da 1 minuto a 30 giorni. I preavvisi si ripetono dopo 24 ore.</small></label><label class="check"><input type="checkbox" id="deadline-notification"> Avvisa anche al raggiungimento di ogni scadenza</label><p class="settings-note">Questa opzione aggiunge un avviso alla scadenza, anche fuori dagli orari giornalieri. Il controllo funziona mentre questa pagina rimane aperta.</p><div class="settings-note"><strong>Notifiche desktop</strong><p id="notification-status"></p><button type="button" class="secondary" id="enable-notifications">Abilita notifiche desktop</button></div><p class="settings-note">Gli avvisi compaiono nella pagina e, se autorizzate, nelle notifiche di Windows. I dati restano nel profilo Edge di questo PC: usa Backup JSON per conservarne una copia. Nessuna sincronizzazione con il PC personale.</p><p class="form-error" id="settings-error" role="alert"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="settings">Annulla</button><button class="primary" type="submit">Salva impostazioni</button></div></form></dialog>
 <dialog id="import-dialog"><form id="import-form"><div class="dialog-header"><h2>Importa i tuoi avvisi</h2><button type="button" class="icon-button" data-close="import-dialog" aria-label="Chiudi">×</button></div><p>Scegli un backup di questa versione oppure il file <strong>avvisi.json</strong> dell’app Windows.</p><label>File JSON<input id="import-file" type="file" accept=".json,application/json" required></label><label>Come importare<select id="import-mode"><option value="merge">Aggiungi i nuovi avvisi (conserva quelli esistenti)</option><option value="replace">Sostituisci tutto l’archivio e le impostazioni</option></select></label><p class="settings-note">Gli avvisi con lo stesso identificativo vengono ignorati quando aggiungi. Prima di una sostituzione, scarica un backup dell’archivio corrente.</p><p class="form-error" id="import-error" role="alert"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="import-dialog">Annulla</button><button class="primary" type="submit">Importa avvisi</button></div></form></dialog>
 <dialog id="confirm-dialog"><form method="dialog"><div class="dialog-header"><h2 id="confirm-title">Conferma</h2></div><p id="confirm-message"></p><div class="dialog-actions"><button class="secondary" value="cancel">Annulla</button><button class="primary danger" value="confirm">Conferma</button></div></form></dialog><div class="toast" id="toast" role="status" hidden></div>
-<script>(function (root) {
+<script>(function(root){
   'use strict';
+  const LIMIT=10000, MAX_RUNS=2000;
+  function color(value){
+    if(value==null||value==='')return undefined;
+    if(typeof value!=='string'||!/^#[0-9a-f]{6}$/i.test(value))throw Error('Colore delle note non valido.');
+    return value.toLowerCase();
+  }
+  function url(value){
+    if(typeof value!=='string'||value.length>2048||/[\u0000-\u0020\u007f]/.test(value))throw Error('Inserisci un collegamento HTTP, HTTPS oppure mailto valido.');
+    let parsed;try{parsed=new URL(value);}catch{throw Error('Inserisci un indirizzo completo, ad esempio https://esempio.it.');}
+    if(!['https:','http:','mailto:'].includes(parsed.protocol)||(['https:','http:'].includes(parsed.protocol)&&!parsed.hostname)||!parsed.pathname&&parsed.protocol==='mailto:')throw Error('Sono ammessi solo collegamenti HTTP, HTTPS e mailto.');
+    return parsed.href;
+  }
+  function normalize(value){
+    if(!Array.isArray(value)||value.length>MAX_RUNS)throw Error('Formattazione delle note troppo complessa o non valida.');
+    const result=[];let length=0;
+    for(const item of value){
+      if(!item||typeof item.text!=='string')throw Error('Testo delle note non valido.');
+      length+=item.text.length;if(length>LIMIT)throw Error('Le note possono contenere al massimo 10.000 caratteri.');
+      const run={text:item.text};
+      for(const flag of ['bold','italic','underline']){
+        if(item[flag]!=null&&typeof item[flag]!=='boolean')throw Error('Formattazione delle note non valida.');
+        if(item[flag])run[flag]=true;
+      }
+      for(const key of ['color','highlight']){const v=color(item[key]);if(v)run[key]=v;}
+      if(item.href!=null&&item.href!=='')run.href=url(item.href);
+      if(!run.text)continue;
+      const previous=result.at(-1),style=r=>JSON.stringify({...r,text:''});
+      if(previous&&style(previous)===style(run))previous.text+=run.text;else result.push(run);
+    }
+    return result;
+  }
+  const text=runs=>runs.map(r=>r.text).join('');
+  function forNotice(notice){
+    if(notice.NotesRich!=null){const runs=normalize(notice.NotesRich);if(text(runs)===(notice.Notes||''))return runs;}
+    return notice.Notes?[{text:notice.Notes}]:[];
+  }
+  function render(document,container,notice){
+    const fragment=document.createDocumentFragment();
+    for(const run of forNotice(notice)){
+      const span=document.createElement(run.href?'a':'span');span.textContent=run.text;
+      if(run.bold)span.style.fontWeight='700';if(run.italic)span.style.fontStyle='italic';if(run.underline)span.style.textDecoration='underline';
+      if(run.color)span.style.color=run.color;if(run.highlight)span.style.backgroundColor=run.highlight;
+      if(run.href){span.href=run.href;span.target='_blank';span.rel='noopener noreferrer';}
+      fragment.append(span);
+    }
+    container.replaceChildren(fragment);
+  }
+  const api={LIMIT,normalize,text,url,forNotice,render};
+  if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.AvvisiRichNotes=api;
+})(globalThis);
+</script><script>(function (root) {
+  'use strict';
+  const Rich=typeof module!=='undefined'&&module.exports?require('./rich-notes.js'):root.AvvisiRichNotes;
   const minutes = n => n * 60000;
   const pad = n => String(n).padStart(2, '0');
+  const PRIORITIES=Object.freeze({low:{label:'Bassa',rank:0},medium:{label:'Media',rank:1},high:{label:'Alta',rank:2}});
+  const priorityInfo=n=>PRIORITIES[Object.hasOwn(PRIORITIES,n.Priority)?n.Priority:'medium'];
+  function comparePriority(a,b){return priorityInfo(b).rank-priorityInfo(a).rank||date(a.DueAt)-date(b.DueAt)||a.Title.localeCompare(b.Title,'it');}
+  function orderNotices(notices,sort='priority'){
+    return [...notices].sort((a,b)=>sort==='priority'?comparePriority(a,b):sort==='title'?a.Title.localeCompare(b.Title,'it'):((date(a.DueAt)-date(b.DueAt))*(sort==='reverse'?-1:1)||a.Title.localeCompare(b.Title,'it')));
+  }
   function stamp(date) {
     return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}.0000000`;
   }
@@ -51,8 +128,14 @@
       date(n.BrowserDeadlineNotifiedAt,true);
       if (n.DueAt.slice(0,10)<n.StartDate.slice(0,10)) throw Error('La scadenza non può precedere la data dell’avviso.');
       if (!Number.isInteger(n.LeadMinutes)||n.LeadMinutes<0||n.LeadMinutes>525600||typeof n.Completed!=='boolean') throw Error('Anticipo o stato non valido.');
+      const priority=n.Priority??'medium';
+      if(typeof priority!=='string'||!Object.hasOwn(PRIORITIES,priority))throw Error('Priorità non valida: scegli Bassa, Media o Alta.');
       for (const key of ['LastNotificationWasOverdue','NotificationPending']) if (n[key]!=null && typeof n[key]!=='boolean') throw Error('Stato della notifica non valido.');
-      return { ...n, Notes:n.Notes||'', LastNotifiedAt:n.LastNotifiedAt??null, SnoozedUntil:n.SnoozedUntil??null, LastNotificationWasOverdue:n.LastNotificationWasOverdue??false, NotificationPending:n.NotificationPending??false };
+      const runs=n.NotesRich==null?null:Rich.normalize(n.NotesRich);
+      // Plain notes remain the fallback for older versions and CSV exports.
+      // If an older app edited Notes, its text takes precedence over stale formatting.
+      const formatted=runs&&Rich.text(runs)===(n.Notes||'')?runs:null;
+      return { ...n, Priority:priority, Notes:n.Notes||'', NotesRich:formatted, LastNotifiedAt:n.LastNotifiedAt??null, SnoozedUntil:n.SnoozedUntil??null, LastNotificationWasOverdue:n.LastNotificationWasOverdue??false, NotificationPending:n.NotificationPending??false };
     });
     return data;
   }
@@ -67,7 +150,7 @@
   function reminderList(notices,now,{includeSnoozed=false}={}) {
     return notices.filter(n=>!n.Completed && (inWindow(n,now)||n.NotificationPending) &&
       (includeSnoozed||!n.SnoozedUntil||date(n.SnoozedUntil)<=now))
-      .sort((a,b)=>date(a.DueAt)-date(b.DueAt)||a.Title.localeCompare(b.Title,'it'));
+      .sort(comparePriority);
   }
   function status(n, now) {
     if (n.Completed) return 'Completato';
@@ -117,9 +200,9 @@
   function csv(data,now) {
     const esc = x => {let s=String(x??'');if (/^[\s]*[=+\-@\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';};
     const fmt=d=>date(d).toLocaleString('it-IT',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
-    return '\uFEFFTitolo;Data;Scadenza;Anticipo (minuti);Stato;Note\r\n'+[...data.Notices].sort((a,b)=>date(a.DueAt)-date(b.DueAt)).map(n=>[n.Title,date(n.StartDate).toLocaleDateString('it-IT'),fmt(n.DueAt),n.LeadMinutes,status(n,now),n.Notes].map(esc).join(';')).join('\r\n');
+    return '\uFEFFTitolo;Priorità;Data;Scadenza;Anticipo (minuti);Stato;Note\r\n'+orderNotices(data.Notices).map(n=>[n.Title,priorityInfo(n).label,date(n.StartDate).toLocaleDateString('it-IT'),fmt(n.DueAt),n.LeadMinutes,status(n,now),n.Notes].map(esc).join(';')).join('\r\n');
   }
-  const api={stamp,date,defaults,validate,parseTimes,timesText,inWindow,reminderList,status,dailySlot,due,acknowledge,tick,tickDetailed,merge,csv};
+  const api={stamp,date,defaults,validate,priorityInfo,orderNotices,parseTimes,timesText,inWindow,reminderList,status,dailySlot,due,acknowledge,tick,tickDetailed,merge,csv};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.AvvisiCore=api;
 })(globalThis);
 </script><script>(function(root){
@@ -200,13 +283,136 @@
   }
   const api={create};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.AvvisiWebNotifications=api;
 })(globalThis);
+</script><script>(function(root){
+  'use strict';
+  function create(document,model){
+    const $=id=>document.getElementById(id),editor=$('notice-notes'),toolbar=$('notes-toolbar');
+    const view=document.defaultView;
+    let saved=null;
+    function inside(range){return editor.contains(range.startContainer)&&editor.contains(range.endContainer);}
+    function remember(){
+      const selection=view.getSelection();if(!selection.rangeCount)return;
+      const range=selection.getRangeAt(0);if(!inside(range))return;saved=range.cloneRange();
+      for(const button of toolbar.querySelectorAll('[data-note-command]')){
+        const cmd=button.dataset.noteCommand;
+        if(['bold','italic','underline'].includes(cmd))button.setAttribute('aria-pressed',String(document.queryCommandState(cmd)));
+      }
+      for(const [id,cmd,fallback] of [['notes-color','foreColor','#20353d'],['notes-highlight','hiliteColor','transparent']]){
+        const value=cssColor(document.queryCommandValue(cmd))||fallback;
+        if([...$(id).options].some(o=>o.value===value))$(id).value=value;
+      }
+    }
+    function restore(){
+      editor.focus();const selection=view.getSelection();selection.removeAllRanges();
+      if(saved&&inside(saved))selection.addRange(saved);else{const r=document.createRange();r.selectNodeContents(editor);r.collapse(false);selection.addRange(r);}
+    }
+    function cssColor(value){
+      if(!value||value==='transparent'||value==='rgba(0, 0, 0, 0)')return undefined;
+      if(/^#[0-9a-f]{6}$/i.test(value))return value.toLowerCase();
+      const match=value.match(/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/);
+      return match?'#'+match.slice(1).map(n=>Number(n).toString(16).padStart(2,'0')).join(''):undefined;
+    }
+    function read(){
+      const runs=[];let plain='';
+      const push=(text,style)=>{if(text){runs.push({text,...style});plain+=text;}};
+      function walk(node,inherited){
+        if(node.nodeType===3){push(node.nodeValue.replace(/\u00a0/g,' '),inherited);return;}
+        if(node.nodeType!==1)return;
+        const tag=node.tagName;
+        if(['SCRIPT','STYLE','IFRAME','OBJECT','IMG','SVG','MATH','TEMPLATE'].includes(tag))return;
+        if(tag==='BR'){push('\n',inherited);return;}
+        const block=['DIV','P','LI','UL','OL','BLOCKQUOTE','PRE','H1','H2','H3'].includes(tag);
+        if(block&&plain&&!plain.endsWith('\n'))push('\n',{});
+        const style={...inherited};
+        if(['B','STRONG'].includes(tag))style.bold=true;
+        if(['I','EM'].includes(tag))style.italic=true;
+        if(tag==='U')style.underline=true;
+        const css=node.style;
+        if(css.fontWeight)style.bold=css.fontWeight==='bold'||Number(css.fontWeight)>=600;
+        if(css.fontStyle)style.italic=css.fontStyle==='italic';
+        if(css.textDecorationLine)style.underline=css.textDecorationLine.includes('underline');
+        const foreground=cssColor(css.color||(tag==='FONT'?node.getAttribute('color'):'')),background=cssColor(css.backgroundColor);
+        if(foreground)style.color=foreground;
+        if(css.backgroundColor){delete style.highlight;if(background)style.highlight=background;}
+        if(tag==='A'){try{style.href=model.url(node.getAttribute('href'));}catch{delete style.href;}}
+        for(const child of node.childNodes)walk(child,style);
+        if(block&&node.nextSibling&&node.nextSibling.nodeType===3&&!plain.endsWith('\n'))push('\n',{});
+      }
+      for(const child of editor.childNodes)walk(child,{});
+      // A contenteditable with only its empty-line placeholder is empty.
+      if(!plain.trim()&&editor.textContent==='')return [];
+      return model.normalize(runs);
+    }
+    function feedback(){
+      try{const count=model.text(read()).length;$('notes-count').textContent=count.toLocaleString('it-IT')+' / 10.000';$('notes-error').textContent='';}
+      catch(error){$('notes-error').textContent=error.message;}
+    }
+    function command(name,value=null){
+      restore();document.execCommand('styleWithCSS',false,true);
+      document.execCommand(name,false,value);remember();feedback();
+    }
+    toolbar.addEventListener('mousedown',event=>{if(event.target.closest('button'))event.preventDefault();});
+    for(const button of toolbar.querySelectorAll('[data-note-command]'))button.onclick=()=>{
+      if(button.dataset.noteCommand==='removeFormat'){command('removeFormat');command('unlink');}
+      else command(button.dataset.noteCommand);
+    };
+    $('notes-color').onchange=event=>command('foreColor',event.target.value);
+    $('notes-highlight').onchange=event=>command('hiliteColor',event.target.value);
+    function linkPanel(){
+      remember();const selected=saved?saved.toString():'';
+      $('notes-link-panel').hidden=false;$('notes-link-text').value=selected;$('notes-link-url').value='';$('notes-link-error').textContent='';$('notes-link-url').focus();
+    }
+    $('notes-link').onclick=linkPanel;
+    $('notes-link-cancel').onclick=()=>{$('notes-link-panel').hidden=true;restore();};
+    function applyLink(){
+      try{
+        let value=$('notes-link-url').value.trim();
+        if(!/^[a-z][a-z0-9+.-]*:/i.test(value))value='https://'+value;
+        const href=model.url(value),text=$('notes-link-text').value||saved?.toString()||href;
+        if(text.length>model.LIMIT)throw Error('Il testo del collegamento è troppo lungo.');
+        restore();const selected=view.getSelection().toString();
+        if(selected&&selected===text)document.execCommand('createLink',false,href);
+        else{
+          // HTML is generated exclusively with DOM setters, never from pasted markup.
+          const anchor=document.createElement('a');anchor.href=href;anchor.textContent=text;
+          document.execCommand('insertHTML',false,anchor.outerHTML);
+        }
+        $('notes-link-panel').hidden=true;remember();feedback();
+      }catch(error){$('notes-link-error').textContent=error.message;}
+    }
+    $('notes-link-apply').onclick=applyLink;
+    for(const id of ['notes-link-url','notes-link-text'])$(id).addEventListener('keydown',event=>{
+      if(event.key==='Enter'){event.preventDefault();applyLink();}
+    });
+    editor.addEventListener('keydown',event=>{
+      if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();linkPanel();}
+    });
+    editor.addEventListener('paste',event=>{
+      event.preventDefault();const plain=event.clipboardData?.getData('text/plain')||'';
+      document.execCommand('insertText',false,plain);remember();feedback();
+    });
+    editor.addEventListener('drop',event=>{event.preventDefault();$('notes-error').textContent='Per aggiungere testo usa Copia e Incolla.';});
+    editor.addEventListener('input',feedback);
+    editor.addEventListener('keyup',remember);editor.addEventListener('mouseup',remember);
+    document.addEventListener('selectionchange',remember);
+    function load(notice){
+      model.render(document,editor,notice||{Notes:''});saved=null;
+      $('notes-link-panel').hidden=true;$('notes-color').value='#20353d';$('notes-highlight').value='transparent';
+      for(const b of toolbar.querySelectorAll('[aria-pressed]'))b.setAttribute('aria-pressed','false');
+      feedback();
+    }
+    return {load,read};
+  }
+  root.AvvisiNotesEditor={create};
+})(globalThis);
 </script><script>(() => {
   'use strict';
-  const C=AvvisiCore, Desktop=AvvisiDesktop, $=id=>document.getElementById(id), KEY='avvisi-aziendale-browser-v1', BACKUP=KEY+'-backup';
+  const C=AvvisiCore, Rich=AvvisiRichNotes, Desktop=AvvisiDesktop, $=id=>document.getElementById(id), KEY='avvisi-aziendale-browser-v1', BACKUP=KEY+'-backup';
+  const NotesEditor=AvvisiNotesEditor.create(document,Rich);
   let data=C.defaults(), observed=null, filter='active', editingId=null, editingSnapshot=null, settingsSnapshot=null, volatile=false, damaged=false, preview=false, summaryOpen=false, tickerBusy=false;
   let desktopFeedback='', desktopCode='', popupSignature='';
   const labels={active:'Da completare',overdue:'Scaduti',soon:'In scadenza',completed:'Completati',all:'Tutti gli avvisi'};
-  const editable=n=>JSON.stringify([n.Title,n.Notes,n.StartDate,n.DueAt,n.LeadMinutes,n.Completed]);
+  const editable=n=>JSON.stringify([n.Title,n.Priority,n.Notes,n.NotesRich,n.StartDate,n.DueAt,n.LeadMinutes,n.Completed]);
   const decode=text=>{const raw=JSON.parse(text);return C.validate(raw.data??raw);};
   const warn=message=>{$('storage-warning').textContent=message;$('storage-warning').hidden=false;};
   let startupMessage='';
@@ -246,6 +452,7 @@
   const pretty=d=>C.date(d).toLocaleDateString('it-IT',{day:'2-digit',month:'short',year:'numeric'});
   const clock=d=>C.date(d).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});
   function badge(n,now){const s=C.status(n,now), cls={'Scaduto':'overdue','In scadenza':'soon','Completato':'completed','Posticipato':'snoozed'}[s]||'';const b=element('span','badge '+cls,s);if(n.SnoozedUntil&&C.date(n.SnoozedUntil)>now)b.title='Posticipato fino al '+pretty(n.SnoozedUntil)+' '+clock(n.SnoozedUntil);return b;}
+  function priorityBadge(n){const info=C.priorityInfo(n),code=n.Priority??'medium',b=element('span','priority-badge priority-'+code,info.label);b.setAttribute('aria-label','Priorità '+info.label.toLowerCase());return b;}
   async function perform(fn,message){try{await commit(fn);if(message)toast(message);}catch(e){toast(e.message);}}
   function render(){
     const now=new Date();$('today').textContent=now.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
@@ -253,16 +460,16 @@
     document.querySelectorAll('.nav[data-filter]').forEach(b=>{b.classList.toggle('active',b.dataset.filter===filter);b.setAttribute('aria-pressed',String(b.dataset.filter===filter));});
     $('list-title').textContent=labels[filter];
     const query=$('search').value.trim().toLocaleLowerCase('it');
-    const list=data.Notices.filter(n=>matches(n,filter,now)&&(!query||(n.Title+' '+n.Notes).toLocaleLowerCase('it').includes(query)));
-    const sort=$('sort').value;list.sort((a,b)=>sort==='title'?a.Title.localeCompare(b.Title,'it'):(C.date(a.DueAt)-C.date(b.DueAt))*(sort==='reverse'?-1:1));
+    const list=C.orderNotices(data.Notices.filter(n=>matches(n,filter,now)&&(!query||(n.Title+' '+n.Notes).toLocaleLowerCase('it').includes(query))),$('sort').value);
     $('result-count').textContent=list.length;$('rows').replaceChildren();
     for(const n of list){
       const tr=element('tr'), title=element('td'), b=action(n.Title,'Modifica '+n.Title,()=>openEditor(n.Id),'notice-name');title.append(b);
-      if(n.Notes){const note=element('span','note-preview',n.Notes);note.title=n.Notes;title.append(note);}
+      if(n.Notes){const note=element('div','note-preview rich-notes');Rich.render(document,note,n);note.title=n.Notes;title.append(note);}
       const due=element('td');due.append(element('span','due-day',pretty(n.DueAt)),element('span','due-time','ore '+clock(n.DueAt)));
       const state=element('td');state.append(badge(n,now));
+      const priority=element('td');priority.append(priorityBadge(n));
       const controls=element('td'), actions=element('div','actions');actions.append(action(n.Completed?'↶':'✓',n.Completed?'Riapri avviso':'Completa avviso',()=>perform(d=>{const item=d.Notices.find(x=>x.Id===n.Id);item.Completed=!item.Completed;item.NotificationPending=false;item.SnoozedUntil=null;if(!item.Completed){item.LastNotifiedAt=null;item.LastNotificationWasOverdue=false;item.BrowserDeadlineNotifiedAt=null;}},n.Completed?'Avviso riaperto.':'Avviso completato.')),action('✎','Modifica avviso',()=>openEditor(n.Id)),action('×','Elimina avviso',()=>remove(n.Id)));
-      controls.append(actions);tr.append(title,due,state,controls);$('rows').append(tr);
+      controls.append(actions);tr.append(title,priority,due,state,controls);$('rows').append(tr);
     }
     $('empty').hidden=!!list.length;document.querySelector('.table-wrap').hidden=!list.length;
     const trulyEmpty=!data.Notices.length;
@@ -283,8 +490,9 @@
     const notices=preview?[{Title:'La tua prossima scadenza',Notes:'Qui ritroverai il titolo, la scadenza e tutte le note del tuo avviso.',DueAt:C.stamp(now),Completed:false}]:C.reminderList(data.Notices,now,{includeSnoozed:true});
     function reminderRow(n){
       const row=element('div','reminder-item'), content=element('div');content.append(element('strong','',n.Title),element('small','',pretty(n.DueAt)+' · '+clock(n.DueAt)));
+      content.append(priorityBadge(n));
       if(n.SnoozedUntil&&C.date(n.SnoozedUntil)>now)content.append(element('small','','Posticipato fino al '+pretty(n.SnoozedUntil)+' '+clock(n.SnoozedUntil)));
-      if(n.Notes)content.append(element('p','',n.Notes));row.append(content);
+      if(n.Notes){const note=element('div','rich-notes reminder-notes');Rich.render(document,note,n);content.append(note);}row.append(content);
       if(!preview){const actions=element('div','actions');actions.append(action('Apri','Apri avviso',()=>openEditor(n.Id),'text-button'),action('+1 ora','Posticipa di un’ora',()=>perform(d=>{const item=d.Notices.find(x=>x.Id===n.Id);item.SnoozedUntil=C.stamp(new Date(Date.now()+3600000));item.NotificationPending=false;},'Avviso posticipato di un’ora.'),'text-button'),action('✓ Completa','Completa avviso',()=>perform(d=>{const item=d.Notices.find(x=>x.Id===n.Id);item.Completed=true;item.NotificationPending=false;item.SnoozedUntil=null;},'Avviso completato.'),'text-button'));row.append(actions);}
       return row;
     }
@@ -332,17 +540,19 @@
     editingId=id;const n=id?data.Notices.find(x=>x.Id===id):null;if(id&&!n)return;
     editingSnapshot=n?editable(n):null;const now=new Date(),tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,9);
     $('editor-form').reset();$('editor-error').textContent='';$('editor-title').textContent=n?'Modifica avviso':'Nuovo avviso';
-    $('notice-title').value=n?.Title||'';$('notice-notes').value=n?.Notes||'';$('notice-start').value=n?.StartDate.slice(0,10)||C.stamp(now).slice(0,10);$('notice-due').value=n?.DueAt.slice(0,16)||C.stamp(tomorrow).slice(0,16);$('notice-completed').checked=n?.Completed||false;
+    $('notice-title').value=n?.Title||'';NotesEditor.load(n);$('notice-start').value=n?.StartDate.slice(0,10)||C.stamp(now).slice(0,10);$('notice-due').value=n?.DueAt.slice(0,16)||C.stamp(tomorrow).slice(0,16);$('notice-completed').checked=n?.Completed||false;
+    $('priority-'+(n?.Priority??'medium')).checked=true;
     $('notice-lead').querySelectorAll('[data-custom]').forEach(x=>x.remove());
     const lead=n?.LeadMinutes??1440;if(![...$('notice-lead').options].some(o=>+o.value===lead)){const o=new Option(lead+' minuti prima',String(lead));o.dataset.custom='true';$('notice-lead').append(o);}$('notice-lead').value=String(lead);
     if($('reminder-popup').open)$('reminder-popup').close();$('editor').showModal();
   }
   $('editor-form').onsubmit=async e=>{
     e.preventDefault();try{
+      const notes=NotesEditor.read();
       await commit(d=>{
         const existing=d.Notices.find(n=>n.Id===editingId);
         if(editingId&&(!existing||editable(existing)!==editingSnapshot))throw Error('L’avviso è cambiato mentre lo modificavi. Chiudi e riapri il modulo per vedere i dati aggiornati.');
-        const n={...(existing||{}),Id:editingId||(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2)),Title:$('notice-title').value.trim(),Notes:$('notice-notes').value,StartDate:C.stamp(C.date($('notice-start').value)),DueAt:C.stamp(C.date($('notice-due').value)),LeadMinutes:+$('notice-lead').value,Completed:$('notice-completed').checked};
+        const n={...(existing||{}),Id:editingId||(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2)),Title:$('notice-title').value.trim(),Priority:document.querySelector('input[name="notice-priority"]:checked').value,Notes:Rich.text(notes),NotesRich:notes,StartDate:C.stamp(C.date($('notice-start').value)),DueAt:C.stamp(C.date($('notice-due').value)),LeadMinutes:+$('notice-lead').value,Completed:$('notice-completed').checked};
         const timingChanged=!existing||existing.DueAt!==n.DueAt||existing.LeadMinutes!==n.LeadMinutes||existing.Completed!==n.Completed;
         if(timingChanged){n.LastNotifiedAt=null;n.LastNotificationWasOverdue=false;n.NotificationPending=false;n.SnoozedUntil=null;n.BrowserDeadlineNotifiedAt=null;}
         if(existing)d.Notices[d.Notices.indexOf(existing)]=n;else d.Notices.push(n);
